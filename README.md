@@ -1,84 +1,159 @@
-# Turborepo starter
+# Ooru - 2D Metaverse Application
 
-This Turborepo starter is maintained by the Turborepo core team.
+A modern metaverse application where people can hang out, built with React, Node.js, and WebSocket technology. This project follows a monorepo pattern to organize shared code and multiple applications which is creted using turbo repo cli.
 
-## Using this example
+![alt text](image.png)
 
-Run the following command:
-
-```sh
-npx create-turbo@latest
-```
-
-## What's inside?
-
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
+## Project Structure
 
 ```
-cd my-turborepo
-pnpm build
+OORU-APP/
+├── apps/
+│   ├── frontend/     # React + Vite metaverse client
+│   ├── http/        # REST API server
+│   └── ws/          # WebSocket server
+├── packages/        # Shared code/libraries
+└── tests/          # Test files
 ```
 
-### Develop
+## Features
 
-To develop all apps and packages, run the following command:
+- **Virtual Space**: A metaverse environment for users to interact
+- **Real-time Communication**: WebSocket implementation for live updates
+- **Modern Frontend**: Built with React and Vite
+- **Robust Backend**: REST API endpoints and WebSocket server
+- **Database Integration**: PostgreSQL with Prisma ORM
 
-```
-cd my-turborepo
-pnpm dev
-```
 
-### Remote Caching
+## Upcoming Features
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+- Live Chat functionality
+- Video Chat implementation
+- More interactive elements
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+## Prerequisites
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+- Node.js
+- npm
+- PostgreSQL
 
-```
-cd my-turborepo
-npx turbo login
-```
+## Installation
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd OORU-APP
 ```
 
-## Useful Links
+2. Setup database:
+   - Create a `.env` file in `packages/db/`
+   - Add your database URL:
+   ```
+   DATABASE_URL="postgresql://user:password@localhost:5432/db_name"
+   ```
+   - Navigate to the db package:
+   ```bash
+   cd packages/db
+   ```
+   - Generate Prisma client:
+   ```bash
+   npx prisma generate
+   ```
+   - Push the database schema:
+   ```bash
+   npx prisma db push
+   ```
+   - (Optional) Seed the database if you have seed data:
+   ```bash
+   npx prisma db seed
+   ```
+   - (Optional) To view your database using Prisma Studio:
+   ```bash
+   npx prisma studio
+   ```
 
-Learn more about the power of Turborepo:
+3. Install dependencies for all applications:
+```bash
+# In the root directory
+npm install
+```
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+4. Start the development servers:
+```bash
+# Start each application (run these in separate terminals)
+cd apps/frontend && npm run dev
+cd apps/http && npm run dev
+cd apps/ws && npm run dev
+```
+
+## Running Tests
+
+The project uses a comprehensive testing suite to ensure functionality across all components.
+
+### Setting Up Test Environment
+
+1. Install test dependencies:
+```bash
+cd tests
+npm install
+```
+### Running Tests
+
+```bash
+# Run all tests
+npm test
+
+# Run tests with coverage report
+npm run test:coverage
+
+# Run tests in watch mode during development
+npm run test:watch
+```
+
+
+## Project Components
+
+### Frontend (`apps/frontend`)
+- React-based client application
+- Built with Vite for optimal development experience
+- Handles the metaverse user interface and interactions
+
+### HTTP Server (`apps/http`)
+- REST API endpoints
+- Handles authentication and data operations
+- Communicates with the database
+
+### WebSocket Server (`apps/ws`)
+- Manages real-time communications
+- Handles live updates and user interactions
+- Enables real-time metaverse experience
+
+### Shared Packages (`packages/`)
+- Common utilities and configurations
+- Database schemas and models
+- Shared types and interfaces
+
+## Technologies Used
+
+- React
+- Node.js
+- WebSocket
+- PostgreSQL
+- Prisma ORM
+- Vite
+
+## Credits
+
+This project was initially built following a tutorial by Harkirat Singh. You can find the tutorial [here](https://www.youtube.com/watch?v=aamk2isgLRk).
+
+## Development
+
+This is an active project with ongoing development. Future updates will include enhanced chat features and video communication capabilities. As of now this is just a base to be developed upon.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+[Add your license here]
